@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "saurabh-portfolio",
   "version": "1.0.0",
   "type": "module",
@@ -24,5 +25,21 @@
   },
   "optionalDependencies": {
     "@esbuild/win32-x64": "^0.25.12"
+=======
+  "name": "saurabh-dev-portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "live-server . --port=3000 --no-watch --entry-file=index.html --no-log-requests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+>>>>>>> 2e45307930a9d6332813ce09b76bba4a3c7fb672
   }
 }

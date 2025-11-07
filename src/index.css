@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-dark-bg text-text-light font-sans;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px #9D4EDD, 0 0 20px #9D4EDD, 0 0 30px #C77DFF;
+  }
+  
+  .box-glow {
+    box-shadow: 0 0 20px rgba(157, 78, 221, 0.3), 0 0 40px rgba(157, 78, 221, 0.2);
+  }
+  
+  .hover-glow:hover {
+    box-shadow: 0 0 30px rgba(157, 78, 221, 0.5), 0 0 60px rgba(157, 78, 221, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .animate-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .animate-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

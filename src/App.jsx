@@ -12,10 +12,12 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import BackToTop from './components/BackToTop'
 import SectionDivider from './components/SectionDivider'
+import ParticleBackground from './components/ParticleBackground'
 
 function App() {
   return (
-    <div className="min-h-screen bg-dark-bg">
+    <div className="min-h-screen bg-dark-bg relative">
+      <ParticleBackground />
       <Navbar />
       <Hero />
       <SectionDivider />

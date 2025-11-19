@@ -1,26 +1,38 @@
 import React, { useState, useEffect } from 'react'
-import { FaBars, FaTimes } from 'react-icons/fa'
+import { FaBars, FaTimes, FaUser, FaCode, FaFolder, FaTrophy, FaFileAlt, FaEnvelope } from 'react-icons/fa'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('about')
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
+      
+      // Update active section based on scroll position
+      const sections = ['about', 'skills', 'projects', 'achievements', 'contact']
+      const current = sections.find(section => {
+        const element = document.getElementById(section)
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          return rect.top <= 100 && rect.bottom >= 100
+        }
+        return false
+      })
+      if (current) setActiveSection(current)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Education', href: '#education' },
-    { name: 'Achievements', href: '#achievements' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'About', href: '#about', icon: <FaUser /> },
+    { name: 'Skills', href: '#skills', icon: <FaCode /> },
+    { name: 'Projects', href: '#projects', icon: <FaFolder /> },
+    { name: 'Achievements', href: '#achievements', icon: <FaTrophy /> },
+    { name: 'Resume', href: '#resume', icon: <FaFileAlt /> },
+    { name: 'Contact', href: '#contact', icon: <FaEnvelope /> },
   ]
 
   const scrollToSection = (href) => {
@@ -43,24 +55,35 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           <button
             onClick={() => scrollToSection('#hero')}
-            className="text-xl md:text-2xl font-bold text-purple-primary hover:text-purple-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-purple-primary rounded px-2"
+            className="flex items-center gap-2 text-xl md:text-2xl font-bold text-purple-primary hover:text-purple-secondary transition-colors focus:outline-none focus:ring-2 focus:ring-purple-primary rounded px-2"
             aria-label="Go to homepage"
           >
-            SAURABH.DEV
+            <div className="w-8 h-8 bg-purple-primary rounded flex items-center justify-center">
+              <FaCode className="text-white text-sm" />
+            </div>
+            <span>Saurabh's Portfolio</span>
           </button>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
-            {navLinks.map((link) => (
-              <button
-                key={link.name}
-                onClick={() => scrollToSection(link.href)}
-                className="text-text-light hover:text-purple-primary transition-colors duration-300 font-medium focus:outline-none focus:ring-2 focus:ring-purple-primary focus:ring-offset-2 focus:ring-offset-dark-bg rounded px-2 py-1"
-                aria-label={`Navigate to ${link.name} section`}
-              >
-                {link.name}
-              </button>
-            ))}
+          <div className="hidden md:flex space-x-2">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.replace('#', '')
+              return (
+                <button
+                  key={link.name}
+                  onClick={() => scrollToSection(link.href)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 font-medium ${
+                    isActive
+                      ? 'bg-purple-primary/20 text-purple-primary'
+                      : 'text-text-light hover:text-purple-primary hover:bg-purple-primary/10'
+                  }`}
+                  aria-label={`Navigate to ${link.name} section`}
+                >
+                  <span className="text-sm">{link.icon}</span>
+                  {link.name}
+                </button>
+              )
+            })}
           </div>
 
           {/* Mobile Menu Button */}
@@ -85,9 +108,10 @@ const Navbar = () => {
               <button
                 key={link.name}
                 onClick={() => scrollToSection(link.href)}
-                className="block w-full text-left text-text-light hover:text-purple-primary hover:bg-purple-primary/10 transition-all duration-300 px-4 py-3 rounded-lg"
+                className="flex items-center gap-2 w-full text-left text-text-light hover:text-purple-primary hover:bg-purple-primary/10 transition-all duration-300 px-4 py-3 rounded-lg"
                 aria-label={`Navigate to ${link.name} section`}
               >
+                <span>{link.icon}</span>
                 {link.name}
               </button>
             ))}

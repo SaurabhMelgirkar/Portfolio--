@@ -9,6 +9,7 @@
   
   body {
     @apply bg-dark-bg text-text-light font-sans;
+    overflow-x: hidden;
   }
 }
 
@@ -45,5 +46,11 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Ensure proper z-index layering */
+section {
+  position: relative;
+  z-index: 1;
 }
 

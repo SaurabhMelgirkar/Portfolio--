@@ -2,13 +2,20 @@ import React, { useState } from 'react'
 import { FaGithub, FaExternalLinkAlt, FaCheckCircle } from 'react-icons/fa'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
+// Helper to get asset path with base URL
+const getAssetPath = (path) => {
+  const base = import.meta.env.BASE_URL
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path
+  return `${base}${cleanPath}`
+}
+
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All')
 
   const allProjects = [
     {
       title: 'YogaMate (AI-Powered Yoga Trainer)',
-      image: '/assets/unnamed.jpg',
+      image: getAssetPath('assets/unnamed.jpg'),
       tags: 'Python, ML, TensorFlow',
       description: 'Built with Python, ML, and TensorFlow; achieved top honors at Aavishkar 2024.',
       features: [
@@ -21,7 +28,7 @@ const Projects = () => {
     },
     {
       title: 'IoT-Based Home Automation',
-      image: '/assets/iot(1).jpg',
+      image: getAssetPath('assets/iot(1).jpg'),
       tags: 'ESP32, IoT, Python',
       description: 'Created ESP32-powered system reducing energy consumption by 15%.',
       features: [
@@ -33,7 +40,7 @@ const Projects = () => {
     },
     {
       title: 'Complaint Portal',
-      image: '/assets/complaint portal(1).jpg',
+      image: getAssetPath('assets/complaint portal(1).jpg'),
       tags: 'PHP, MySQL',
       description: 'Developed a centralized complaint management system using PHP and MySQL.',
       features: [
@@ -46,7 +53,7 @@ const Projects = () => {
     },
     {
       title: 'Emoify',
-      image: '/assets/emo.jpg',
+      image: getAssetPath('assets/emo.jpg'),
       tags: 'Flask, TensorFlow, OpenCV',
       description: 'Emotion-based music suggestion app using Flask, TensorFlow, and OpenCV.',
       features: [

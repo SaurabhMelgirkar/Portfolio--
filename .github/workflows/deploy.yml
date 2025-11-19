@@ -1,4 +1,4 @@
-name: Deploy Vite app to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: 'pages'
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -21,10 +21,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
@@ -32,6 +32,20 @@ jobs:
 
       - name: Build
         run: npm run build
+        continue-on-error: false
+
+      - name: Verify build output
+        run: |
+          echo "Checking build output..."
+          ls -la dist/
+          echo "Checking for index.html..."
+          test -f dist/index.html && echo "✓ index.html exists" || echo "✗ index.html missing"
+          echo "Checking for .nojekyll..."
+          test -f dist/.nojekyll && echo "✓ .nojekyll exists" || echo "✗ .nojekyll missing"
+          echo "Checking for 404.html..."
+          test -f dist/404.html && echo "✓ 404.html exists" || echo "✗ 404.html missing"
+          echo "Listing assets..."
+          ls -la dist/assets/ || echo "No assets folder found"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -48,3 +62,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+

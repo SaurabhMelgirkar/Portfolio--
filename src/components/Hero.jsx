@@ -3,6 +3,13 @@ import { FaEnvelope, FaDownload, FaFilePdf } from 'react-icons/fa'
 import { SiReact, SiJavascript, SiPython, SiMongodb, SiGithub, SiTensorflow, SiMysql } from 'react-icons/si'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
+// Helper to get asset path with base URL
+const getAssetPath = (path) => {
+  const base = import.meta.env.BASE_URL
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path
+  return `${base}${cleanPath}`
+}
+
 const Hero = () => {
   const sectionRef = useScrollAnimation()
   const blackHoleRef = useRef(null)
@@ -95,7 +102,7 @@ const Hero = () => {
                 className="relative transition-transform duration-300 ease-out"
               >
                 <img
-                  src="/assets/WhatsApp Image 2025-10-19 at 11.43.14 PM.jpeg"
+                  src={getAssetPath('assets/WhatsApp Image 2025-10-19 at 11.43.14 PM.jpeg')}
                   alt="Saurabh Melgirkar"
                   className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-purple-primary object-cover shadow-2xl shadow-purple-primary/50"
                   onError={(e) => {
@@ -129,7 +136,7 @@ const Hero = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <a
-                href="/assets/saurabh_melgirkar_resume.pdf"
+                href={getAssetPath('assets/saurabh_melgirkar_resume.pdf')}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleResumeDownload}

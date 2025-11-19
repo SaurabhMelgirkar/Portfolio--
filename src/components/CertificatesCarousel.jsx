@@ -1,6 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { FaChevronLeft, FaChevronRight, FaCertificate, FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 
+// Helper to get asset path with base URL
+const getAssetPath = (path) => {
+  const base = import.meta.env.BASE_URL
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path
+  return `${base}${cleanPath}`
+}
+
 const CertificatesCarousel = () => {
   const touchStartX = useRef(0)
   const touchEndX = useRef(0)
@@ -8,35 +15,35 @@ const CertificatesCarousel = () => {
   
   const certificates = [
     {
-      image: '/assets/Image.png',
+      image: getAssetPath('assets/Image.png'),
       title: 'State Level IoT Competition - 3rd Place',
       alt: 'State Level IoT Competition Certificate',
       year: '2024',
       organization: 'Sanjay Ghodawat University'
     },
     {
-      image: '/assets/Image (1).png',
+      image: getAssetPath('assets/Image (1).png'),
       title: 'Aavishkar 2024 Research Convention',
       alt: 'Aavishkar 2024 Certificate',
       year: '2024',
       organization: 'Aavishkar Research Convention'
     },
     {
-      image: '/assets/Image (2).png',
+      image: getAssetPath('assets/Image (2).png'),
       title: 'Project Presentation at Nanded',
       alt: 'Project Presentation Certificate',
       year: '2024',
       organization: 'MGM College, Nanded'
     },
     {
-      image: '/assets/WhatsApp Image 2025-10-20 at 1.36.21 AM.jpeg',
+      image: getAssetPath('assets/WhatsApp Image 2025-10-20 at 1.36.21 AM.jpeg'),
       title: 'IJSCI Research Publication Certificate',
       alt: 'IJSCI Research Publication',
       year: '2024',
       organization: 'International Journal'
     },
     {
-      image: '/assets/WhatsApp Image 2025-10-20 at 1.32.00 AM.jpeg',
+      image: getAssetPath('assets/WhatsApp Image 2025-10-20 at 1.32.00 AM.jpeg'),
       title: 'Receiving Certificate/Gift',
       alt: 'Certificate Award Ceremony',
       year: '2024',

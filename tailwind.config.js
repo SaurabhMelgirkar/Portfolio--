@@ -15,7 +15,7 @@ export default {
       animation: {
         'glow': 'glow 2s ease-in-out infinite alternate',
         'fade-in': 'fadeIn 0.6s ease-in',
-        'slide-up': 'slideUp 0.6s ease-out',
+        'slide-right': 'slideright 0.6s ease-out',
       },
       keyframes: {
         glow: {

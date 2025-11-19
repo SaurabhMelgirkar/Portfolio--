@@ -116,10 +116,10 @@ const Hero = () => {
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               <span className="bg-gradient-to-r from-purple-primary to-purple-secondary bg-clip-text text-transparent">
-                Transforming Ideas into
+                Engineering intelligent, beautifully crafted solutions
               </span>
               <br />
-              <span className="text-text-light">Seamless User Experience</span>
+              <span className="text-text-light">that turn complexity into seamless user experiences.</span>
             </h1>
             
             <p className="text-lg md:text-xl text-text-light/80 leading-relaxed">

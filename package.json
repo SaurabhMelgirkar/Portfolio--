@@ -1,11 +1,13 @@
 {
   "name": "saurabh-portfolio",
   "version": "1.0.0",
+  "homepage": "https://saurabhmelgirkar.github.io/portfolio-/",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "postbuild": "node -e \"const fs = require('fs'); fs.copyFileSync('public/.nojekyll', 'dist/.nojekyll'); if (fs.existsSync('public/404.html')) fs.copyFileSync('public/404.html', 'dist/404.html');\"",
+    "build": "vite build && node scripts/postbuild.mjs",
+    "build:gh-pages": "cross-env DEPLOY_TARGET=gh-pages vite build && node scripts/postbuild.mjs",
+    "deploy": "npm run build:gh-pages && gh-pages -d dist",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -18,7 +20,9 @@
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.16",
+    "cross-env": "^7.0.3",
     "esbuild": "^0.25.12",
+    "gh-pages": "^6.1.1",
     "patch-package": "^8.0.1",
     "postcss": "^8.4.32",
     "tailwindcss": "^3.4.0",

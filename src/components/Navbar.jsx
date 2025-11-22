@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { FaBars, FaTimes, FaUser, FaCode, FaFolder, FaTrophy, FaFileAlt, FaEnvelope } from 'react-icons/fa'
+import { FaBars, FaTimes, FaUser, FaCode, FaFolder, FaTrophy, FaEnvelope } from 'react-icons/fa'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -31,7 +31,6 @@ const Navbar = () => {
     { name: 'Skills', href: '#skills', icon: <FaCode /> },
     { name: 'Projects', href: '#projects', icon: <FaFolder /> },
     { name: 'Achievements', href: '#achievements', icon: <FaTrophy /> },
-    { name: 'Resume', href: '#resume', icon: <FaFileAlt /> },
     { name: 'Contact', href: '#contact', icon: <FaEnvelope /> },
   ]
 

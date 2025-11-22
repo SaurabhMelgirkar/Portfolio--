@@ -1,0 +1,63 @@
+name: Deploy portfolio to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site for GitHub Pages
+        run: npm run build:gh-pages
+
+      - name: Verify build output
+        run: |
+          echo "Checking build output..."
+          ls -la dist/
+          echo "Checking for index.html..."
+          test -f dist/index.html && echo "✓ index.html exists" || echo "✗ index.html missing"
+          echo "Checking for .nojekyll..."
+          test -f dist/.nojekyll && echo "✓ .nojekyll exists" || echo "✗ .nojekyll missing"
+          echo "Checking for 404.html..."
+          test -f dist/404.html && echo "✓ 404.html exists" || echo "✗ 404.html missing"
+          echo "Listing assets..."
+          ls -la dist/assets/ || echo "No assets folder found"
+
+      - name: Upload dist artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

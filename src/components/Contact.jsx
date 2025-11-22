@@ -109,7 +109,9 @@ const Contact = () => {
                 <span className="text-text-light group-hover:text-purple-secondary transition-colors">GitHub</span>
               </a>
               <a
-                href="mailto:saurabhssm14@gmail.com"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=saurabhssm14@gmail.com&su=Portfolio%20Contact&body=Hello%20Saurabh,"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-3 p-4 bg-dark-bg/80 border border-purple-primary/50 rounded-lg hover:bg-purple-primary/30 hover:border-purple-secondary hover-glow transition-all duration-300 group hover:scale-105 cursor-pointer"
               >
                 <FaEnvelope className="text-2xl text-purple-primary group-hover:text-purple-secondary transition-colors" />

@@ -1,7 +1,7 @@
 {
   "name": "saurabh-portfolio",
   "version": "1.0.0",
-  "homepage": "https://saurabhmelgirkar.github.io/portfolio-/",
+  "homepage": "https://saurabhmelgirkar.github.io/Portfolio--/",
   "type": "module",
   "scripts": {
     "dev": "vite",

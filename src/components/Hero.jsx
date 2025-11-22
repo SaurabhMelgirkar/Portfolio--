@@ -42,16 +42,6 @@ const Hero = () => {
         
         skillsContainerRef.current.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg) translateZ(0)`
       }
-
-      if (profileRef.current) {
-        const rect = profileRef.current.getBoundingClientRect()
-        const centerX = rect.left + rect.width / 2
-        const centerY = rect.top + rect.height / 2
-        const x = (e.clientX - centerX) / 30
-        const y = (e.clientY - centerY) / 30
-        
-        profileRef.current.style.transform = `perspective(1000px) rotateY(${x * 0.5}deg) rotateX(${-y * 0.5}deg) translateZ(0)`
-      }
     }
 
     window.addEventListener('mousemove', handleMouseMove)
